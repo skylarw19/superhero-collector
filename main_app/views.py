@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Superhero
 
 #CBV
@@ -8,6 +8,14 @@ class SuperheroCreate(CreateView):
     model = Superhero
     fields = '__all__'
     # success_url = '/superheroes/'
+
+class SuperheroUpdate(UpdateView):
+    model = Superhero
+    fields = ['power', 'description', 'age']
+
+class SuperheroDelete(DeleteView):
+    model = Superhero
+    success_url = '/superheroes/'
 
 # Create your views here.
 def home(request):
